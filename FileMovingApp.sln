@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileMovingApp", "FileMovingApp\FileMovingApp.vcxproj", "{9487D7B2-64DE-4CCB-8426-67B15628354D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Debug|x64.ActiveCfg = Debug|x64
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Debug|x64.Build.0 = Debug|x64
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Debug|x86.ActiveCfg = Debug|Win32
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Debug|x86.Build.0 = Debug|Win32
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Release|x64.ActiveCfg = Release|x64
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Release|x64.Build.0 = Release|x64
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Release|x86.ActiveCfg = Release|Win32
+		{9487D7B2-64DE-4CCB-8426-67B15628354D}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAE4D5F7-1AC3-47C2-BC0E-A64F345B6D45}
+	EndGlobalSection
+EndGlobal
