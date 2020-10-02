@@ -1,18 +1,23 @@
 #pragma once
+
+#include <filesystem>
+#include <string>
+
 class FileHandler
 {
 private:
-	FileReader reader;
-	FileWriter writer;
+	std::filesystem::path filepath;
+	//FileReader reader;
+	//FileWriter writer;
 public:
-	void read();
-	void write();
+	void read(std::string);
+	//void write();
 };
-class FileReader
-{
-
-};
-class FileWriter
-{
-
-};
+//class FileReader
+//{
+//
+//};
+//class FileWriter
+//{
+//
+//};
