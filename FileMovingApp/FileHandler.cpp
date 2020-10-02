@@ -21,12 +21,14 @@ bool FileHandler::copy(std::string& srcstring, std::string& dststring) {
 	//Copying files does its own error code reports, but doing it sooner clears up where the problem lies.
 	filestat = fs::status(src, ec);
 	if (ec) {		//check whether status checking returned an error code.
-		std::cout << "Uh oh, there was an error with the source directory!\n" << ec.message() << '\n';
+		std::cout << "Uh oh, there was an error with the source directory!\n" << fs::absolute(src).string() <<'\n'
+			<< ec.message() << '\n';
 		return false;
 	}
 	filestat = fs::status(dst, ec);
 	if (ec) {
-		std::cout << "Uh oh, there was an error with the destination directory!\n" << ec.message() << '\n';
+		std::cout << "Uh oh, there was an error with the destination directory!\n" << fs::absolute(dst).string() << '\n' 
+			<< ec.message() << '\n';
 		return false;
 	}
 	if (!fs::is_regular_file(src)) {
@@ -37,7 +39,7 @@ bool FileHandler::copy(std::string& srcstring, std::string& dststring) {
 		std::cout << "The destination path is not a directory.\n";
 		return false;
 	}
-	dst /= src.filename();	//Modyfing this path variable is desirable as it helps the remove() method.
+	dst /= src.filename();	//Append same filename to moved file.
 	if (fs::copy_file(src, dst, ec)) {
 		return true;
 	}
