@@ -39,7 +39,6 @@ bool FileHandler::copy(std::string& srcstring, std::string& dststring) {
 	}
 	dst /= src.filename();	//Modyfing this path variable is desirable as it helps the remove() method.
 	if (fs::copy_file(src, dst, ec)) {
-		std::cout << "Succesfully copied " << src.filename() << " to\n" << fs::absolute(dst).string();
 		return true;
 	}
 	else {		//If copying failed, there should be an error code.
@@ -53,6 +52,7 @@ bool FileHandler::move(std::string& srcstring, std::string& dststring)
 	fs::path dst(dststring);
 	if (copy(srcstring, dststring)) {	//Only get to removing the original file if copying is successful.
 		if (fs::remove(src, ec)) {
+			std::cout << "Succesfully moved " << src.filename() << " to\n" << fs::absolute(dst).string();
 			return true;
 		}
 		else {
@@ -66,11 +66,3 @@ bool FileHandler::move(std::string& srcstring, std::string& dststring)
 	}
 	return false;
 }
-//class FileReader {
-//private:
-//public:
-//};
-//class FileWriter {
-//private:
-//public:
-//};
