@@ -3,18 +3,6 @@
 #include <iostream>
 
 namespace fs = std::filesystem;
-void FileHandler::read(std::string fpath) {
-	std::error_code ec;
-	filepath = fpath;
-	filestat = fs::status(fpath, ec);
-	if (ec) {		//check whether status checking returned an error code.
-		std::cout << "Uh oh, there was an error!\n" << ec.message() << '\n';
-		return;
-	}
-	if (!fs::is_regular_file(filepath)) {
-		std::cout << "This path does not lead to a file.\n";
-	}
-}
 bool FileHandler::copyFile(std::string& srcPathString, std::string& dstPathString) {
 	fs::path srcPath(srcPathString);
 	fs::path dstPath(dstPathString);
