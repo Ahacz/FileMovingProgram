@@ -15,32 +15,32 @@ void FileHandler::read(std::string fpath) {
 		std::cout << "This path does not lead to a file.\n";
 	}
 }
-bool FileHandler::copy(std::string& srcstring, std::string& dststring) {
-	fs::path src(srcstring);
-	fs::path dst(dststring);
+bool FileHandler::copyFile(std::string& srcPathString, std::string& dstPathString) {
+	fs::path srcPath(srcPathString);
+	fs::path dstPath(dstPathString);
 	//Copying files does its own error code reports, but doing it sooner clears up where the problem lies.
-	filestat = fs::status(src, ec);
+	filestat = fs::status(srcPath, ec);
 	if (ec) {		//check whether status checking returned an error code.
-		std::cout << "Uh oh, there was an error with the source directory!\n" << fs::absolute(src).string() <<'\n'
+		std::cout << "There was an error with the source file path! Full path:\n" << fs::absolute(srcPath).string() <<'\n'
 			<< ec.message() << '\n';
 		return false;
 	}
-	filestat = fs::status(dst, ec);
+	filestat = fs::status(dstPath, ec);
 	if (ec) {
-		std::cout << "Uh oh, there was an error with the destination directory!\n" << fs::absolute(dst).string() << '\n' 
+		std::cout << "There was an error with the destination directory! Full path:\n" << fs::absolute(dstPath).string() << '\n' 
 			<< ec.message() << '\n';
 		return false;
 	}
-	if (!fs::is_regular_file(src)) {
+	if (!fs::is_regular_file(srcPath)) {
 		std::cout << "The source path does not lead to a file.\n";
 		return false;
 	}
-	if (!fs::is_directory(dst)) {
+	if (!fs::is_directory(dstPath)) {
 		std::cout << "The destination path is not a directory.\n";
 		return false;
 	}
-	dst /= src.filename();	//Append same filename to moved file.
-	if (fs::copy_file(src, dst, ec)) {
+	dstPath /= srcPath.filename();	//Append same filename to moved file.
+	if (fs::copy_file(srcPath, dstPath, ec)) {
 		return true;
 	}
 	else {		//If copying failed, there should be an error code.
@@ -48,19 +48,19 @@ bool FileHandler::copy(std::string& srcstring, std::string& dststring) {
 		return false;
 	}
 }
-bool FileHandler::move(std::string& srcstring, std::string& dststring)
+bool FileHandler::moveFile(std::string& srcPathString, std::string& dstPathString)
 {
-	fs::path src(srcstring);
-	fs::path dst(dststring);
-	if (copy(srcstring, dststring)) {	//Only get to removing the original file if copying is successful.
-		if (fs::remove(src, ec)) {
-			std::cout << "Succesfully moved " << src.filename() << " to\n" << fs::absolute(dst).string();
+	fs::path srcPath(srcPathString);
+	fs::path dstPath(dstPathString);
+	if (copyFile(srcPathString, dstPathString)) {	//Only get to removing the original file if copying is successful.
+		if (fs::remove(srcPath, ec)) {
+			std::cout << "Succesfully moved " << srcPath.filename() << " to\n" << fs::absolute(dstPath).string();
 			return true;
 		}
 		else {
 			std::cout << "There was a problem removing the original file:\n" << ec.message() << '\n';
-			dst /= src.filename();
-			if (!fs::remove(dst, ec)) {	//Notify the user in case removing the destination file is also unsuccessful.
+			dstPath /= srcPath.filename();
+			if (!fs::remove(dstPath, ec)) {	//Notify the user in case removing the destination file is also unsuccessful.
 				std::cout << "Couldn't remove the copied file either...\n" << ec.message() << '\n';
 			}
 			return false;

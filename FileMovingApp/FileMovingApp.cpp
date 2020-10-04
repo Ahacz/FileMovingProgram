@@ -9,7 +9,7 @@ using std::cout;
 
 int main(int argc, char *argv[])
 {
-    setlocale(LC_CTYPE, "Polish");
+    setlocale(LC_CTYPE, "");
     FileHandler handler;
     std::string sourcePath;
     std::string destPath;
