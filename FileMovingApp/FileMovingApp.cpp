@@ -7,15 +7,21 @@
 using std::cin;
 using std::cout;
 
-int main()
+int main(int argc, char *argv[])
 {
     setlocale(LC_CTYPE, "Polish");
     FileHandler handler;
-    std::string filePath;
-    std::string movePath;
-    cout << "Please enter a path to a file you want to move:\n";
-    cin >> filePath;
-    cout << "Please enter a path to destination directory:\n";
-    cin >> movePath;
-    handler.move(filePath,movePath);
+    std::string sourcePath;
+    std::string destPath;
+    if (argc < 3) {
+        cout << "Please enter a path to a file you want to move:\n";
+        cin >> sourcePath;
+        cout << "Please enter a path to destination directory:\n";
+        cin >> destPath;
+    }
+    else {
+        sourcePath = argv[1];
+        destPath = argv[2];
+    }
+    handler.move(sourcePath,destPath);
 }
