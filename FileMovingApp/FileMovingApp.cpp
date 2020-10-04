@@ -9,7 +9,7 @@ using std::cout;
 
 int main()
 {
-    setlocale(LC_CTYPE, "Polish");
+    setlocale(LC_CTYPE, "");
     FileHandler handler;
     std::string filePath;
     std::string movePath;
@@ -17,5 +17,6 @@ int main()
     cin >> filePath;
     cout << "Please enter a path to destination directory:\n";
     cin >> movePath;
-    handler.move(filePath,movePath);
+    handler.moveFile(filePath,movePath);
+    cin.get();
 }

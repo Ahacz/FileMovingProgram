@@ -11,7 +11,7 @@ private:
 	std::filesystem::file_status filestat;
 public:
 	void read(std::string);
-	bool copy(std::string&, std::string&);
-	bool move(std::string&, std::string&);
+	bool copyFile(std::string&, std::string&);
+	bool moveFile(std::string&, std::string&);
 };
 
