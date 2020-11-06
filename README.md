@@ -1,5 +1,5 @@
 # FileMovingProgram
-Program that simply moves files, made for BCF
+Program that simply moves files.
 
 This small program utilises <filesystem> library added to std C++ 17, previously existing in boost library. 
 The program itself may accept arguments from command prompt, or in case of lacking arguments asks for file paths by itself. 
