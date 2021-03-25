@@ -47,7 +47,7 @@ bool FileHandler::moveFile(std::string& srcPathString, std::string& dstPathStrin
 		}
 		else {
 			std::cout << "There was a problem removing the original file:\n" << ec.message() << '\n';
-			dstPath /= srcPath.filename();
+			dstPath += srcPath.filename();
 			if (!fs::remove(dstPath, ec)) {	//Notify the user in case removing the destination file is also unsuccessful.
 				std::cout << "Couldn't remove the copied file either...\n" << ec.message() << '\n';
 			}
